@@ -162,16 +162,16 @@ img {
 
 /* Modifier Classes for Border Top */
 .card--cyan {
-  border-color: var(--color-primary--cyan);
+  border-color: var(--color-primary-cyan);
 }
 .card--red {
-  border-color: var(--color-primary--red);
+  border-color: var(--color-primary-red);
 }
 .card--orange {
   border-color: var(--color-primary--orange);
 }
 .card--blue {
-  border-color: var(--color-primary--blue);
+  border-color: var(--color-primary-blue);
 }
 
 .card__title {
