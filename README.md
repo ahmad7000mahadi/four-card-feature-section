@@ -4,7 +4,7 @@ This is a solution to the Four Card Feature design challenge. It showcases a res
 
 ## 🔗 Links
 
-  - **Live Site URL:** https://ahmad7000mahadi.github.io/four-card-feature/
+  - **Live Site URL:** https://ahmad7000mahadi.github.io/four-card-feature-section/
   - **GitHub Repo URL:** https://github.com/ahmad7000mahadi/four-card-feature
 
 ## 📖 Overview
