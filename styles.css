@@ -1,0 +1,193 @@
+/* ------------------------- */
+/*  1. SETUP & VARIABLES     */
+/* ------------------------- */
+
+:root {
+  /* A. DESIGN SYSTEM TOKENS */
+  --color-primary-red: hsl(0, 78%, 62%);
+  --color-primary--cyan: hsl(180, 62%, 55%);
+  --color-primary-orange: hsl(34, 97%, 64%);
+  --color-primary-blue: hsl(212, 86%, 64%);
+
+  --color-neutral-dark: hsl(234, 12%, 34%);
+  --color-neutral-gray: hsl(212, 6%, 44%);
+  --color-neutral-light: hsl(0, 0%, 98%);
+  --color-white: hsl(0, 0%, 100%);
+
+  --font-family-body: "Poppins", sans-serif;
+  --font-weight-light: 200;
+  --font-weight-regular: 400;
+  --font-weight-bold: 600;
+
+  /* B. SPACING SCALE */
+  --space-xs: 0.5rem; /* 8px */
+  --space-sm: 1rem; /* 16px */
+  --space-md: 1.5rem; /* 24px */
+  --space-lg: 2rem; /* 32px */
+  --space-xl: 3rem; /* 48px */
+
+  /* C. LAYOUT CONSTANTS */
+  --layout-max-width: 69.375rem; /* ~1110px */
+  --card-border-radius: 0.5rem; /* 8px */
+  --card-border-top: 4px;
+  --shadow-primary: 0 1rem 2rem rgba(131, 166, 210, 0.15);
+}
+
+/* ------------------------- */
+/*  2. RESET & GLOBAL STYLES */
+/* ------------------------- */
+
+*. *::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family-body);
+  font-size: 0.9375; /* 15px */
+  background-color: var(--color-neutral-light);
+  color: var(--color-neutral-gray);
+  line-height: 1.6;
+
+  /* Flex centering the whole page */
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--space-xl) var(--space-md);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ---------------------------- */
+/*  3. LAYOUT & COMPONENTS      */
+/* ---------------------------- */
+
+.wrapper {
+  width: 100%;
+  max-width: var(--layout-max-width);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+}
+
+/* --- Intro Section --- */
+
+.intro {
+  text-align: center;
+  max-width: 33.75rem; /* ~540px */
+}
+
+.intro__title {
+  color: var(--color-neutral-dark);
+  font-weight: var(--font-weight-light);
+  font-size: clamp(1.5rem, 4vw, 2.25rem); /* Fluid */
+  line-height: 1.5;
+  margin-block-end: var(--space-sm);
+}
+
+.intro__title__bold {
+  display: block;
+  font-weight: var(--font-weight-bold);
+}
+
+.intro__text {
+  font-size: inherit;
+}
+
+/* --- Card Grid --- */
+
+/* Mobile First: Stacked Layout */
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  width: 100%;
+}
+
+/* Desktop: Diamond Shape */
+@media (min-width: 64em) {
+  .features-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr); /* Two rows */
+    align-items: center;
+    gap: var(--space-lg);
+  }
+
+  /* Grid Placement Strategy 
+    Col 1: Supervisor (Spans 2 rows vertically)
+    Col 2: Team Builder (Row 1), Karma (Row 2)
+    Col 3: Calculator (Spans 2 rows vertically centered)
+    */
+  /* Supervisor */
+  .features-grid > :nth-child(1) {
+    grid-column: 1;
+    grid-row: 1 / 3; /* Span both rows */
+  }
+  /* Team Builder */
+  .features-grid > :nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  /* Karma */
+  .features-grid > :nth-child(3) {
+    grid: 2;
+    grid-row: 2;
+  }
+
+  /* Calculator */
+  .features-grid > :nth-child(4) {
+    grid-column: 3;
+    grid-row: 1 / 3;
+  }
+}
+
+/* --- Card Component --- */
+.card {
+  background-color: var(--color-white);
+  padding: var(--space-lg);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--shadow-primary);
+  display: flex;
+  flex-direction: column;
+  position: relative; /* For the overflow hidden trick if needed, or stacking */
+  overflow: hidden;
+  border-top: var(--card-border-top) solid transparent; /* Placeholder */
+}
+
+/* Modifier Classes for Border Top */
+.card--cyan {
+  border-color: var(--color-primary--cyan);
+}
+.card--red {
+  border-color: var(--color-primary--red);
+}
+.card--orange {
+  border-color: var(--color-primary--orange);
+}
+.card--blue {
+  border-color: var(--color-primary--blue);
+}
+
+.card__title {
+    color: var(--color-neutral-dark);
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    margin-block: 0;
+}
+
+.card__desc {
+    font-size: 1rem; /* 13px */
+    margin-block-start: var(--space-xs);
+    margin-block-end: var(--space-xl);
+}
+
+.card__icon {
+    margin-block-start: auto; /* Pushed icon to bottom if card height grows */
+    align-self: flex-end;
+}
